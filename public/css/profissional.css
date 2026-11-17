@@ -1,0 +1,1040 @@
+/* =========================================================
+   CONSULTA INDIVIDUAL DO PROFISSIONAL (somente leitura)
+   Tudo usa rem, então acompanha o mesmo tamanho-base do restante
+   do seu painel (html com clamp). Todas as classes começam com "pf-"
+   para não misturar com o CSS das outras telas.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
+
+.pf-page {
+    --pf-wine: #8f1529;
+    --pf-wine-dark: #6d0f2b;
+    --pf-wine-soft: #a01c2f;
+    --pf-rose: #f9e3e8;
+    --pf-ink: #2b1f22;
+    --pf-mute: #857379;
+    --pf-line: #efe3e6;
+    --pf-ok: #1f7a46;
+    --pf-ok-bg: #e6f4ec;
+
+    font-family: 'Poppins', system-ui, sans-serif;
+    color: var(--pf-ink);
+    max-width: var(--content-max, 80rem);
+}
+
+.pf-page *,
+.pf-page *::before,
+.pf-page *::after {
+    box-sizing: border-box;
+}
+
+
+/* ---------- TÍTULO DA PÁGINA ---------- */
+
+.pf-header {
+    margin-bottom: 1.6rem;
+}
+
+.pf-header h1 {
+    margin: 0;
+    font-family: 'Nunito', 'Poppins', sans-serif;
+    font-size: 1.55rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--pf-ink);
+}
+
+.pf-subtitle {
+    margin: 0.4rem 0 0;
+    font-size: 0.88rem;
+    color: var(--pf-ink);
+}
+
+
+/* ---------- GRADE: coluna principal + prévia ---------- */
+
+.pf-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+    gap: 1.6rem;
+    align-items: start;
+}
+
+.pf-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+    min-width: 0;
+}
+
+.pf-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+    min-width: 0;
+}
+
+.pf-side .pf-fields {
+    grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+}
+
+.pf-side .pf-fields--compact {
+    grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
+}
+
+
+/* ---------- CARD ---------- */
+
+.pf-card {
+    background: #fff;
+    border: 1px solid #f3e3e6;
+    border-radius: 1.4rem;
+    box-shadow: 0 0.3rem 1.4rem rgba(120, 30, 50, 0.05);
+    overflow: hidden;
+}
+
+
+/* ---------- CAPA VINHO COM CÍRCULOS ---------- */
+
+.pf-cover {
+    position: relative;
+    height: 6rem;
+    overflow: hidden;
+    background: linear-gradient(105deg, #6b1128 0%, #8b1429 55%, #a01a2c 100%);
+}
+
+.pf-cover::before,
+.pf-cover::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+}
+
+.pf-cover::before {
+    right: 1.4rem;
+    top: -6.5rem;
+    width: 11rem;
+    height: 11rem;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.pf-cover::after {
+    left: -0.2rem;
+    bottom: -4.5rem;
+    width: 8rem;
+    height: 8rem;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.pf-preview .pf-cover {
+    height: 4rem;
+}
+
+
+/* ---------- HERO (foto, botões e nome) ---------- */
+
+.pf-hero {
+    padding: 0 1.75rem 1.4rem;
+}
+
+.pf-hero-row {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-top: -2.75rem;
+}
+
+
+.pf-avatar {
+    width: 6rem;
+    height: 6rem;
+    flex: none;
+    border-radius: 50%;
+    border: 0.25rem solid #fff;
+    background: linear-gradient(135deg, #b23a5b, #a32a4a);
+    box-shadow: 0 0.3rem 1rem rgba(90, 15, 40, 0.25);
+    object-fit: cover;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: 'Nunito', 'Poppins', sans-serif;
+    font-size: 2.6rem;
+    font-weight: 800;
+}
+
+
+.pf-identity {
+    margin-top: 1rem;
+}
+
+.pf-identity h2 {
+    margin: 0;
+    font-family: 'Nunito', 'Poppins', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 800;
+    line-height: 1.3;
+    color: var(--pf-ink);
+}
+
+.pf-identity-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 0.7rem 0 0.8rem;
+}
+
+.pf-identity p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--pf-ink);
+}
+
+
+/* ---------- LINK "VOLTAR PARA A LISTA" ---------- */
+
+.pf-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--pf-wine);
+    text-decoration: none;
+}
+
+.pf-back svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.pf-back:hover {
+    text-decoration: underline;
+}
+
+
+/* ---------- ETIQUETAS (especialidade, status) ---------- */
+
+.pf-chip {
+    display: inline-block;
+    padding: 0.35rem 0.9rem;
+    border-radius: 99px;
+    background: var(--pf-rose);
+    color: var(--pf-wine);
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+.pf-chip--ok {
+    background: var(--pf-ok-bg);
+    color: var(--pf-ok);
+}
+
+
+/* ---------- SEÇÕES DE DADOS ---------- */
+
+.pf-section {
+    padding: 1.4rem 1.75rem 1.65rem;
+}
+
+.pf-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0 0 1.1rem;
+    font-family: 'Nunito', 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    line-height: 1.3;
+    color: var(--pf-ink);
+}
+
+.pf-section-title::before {
+    content: "";
+    width: 0.25rem;
+    height: 1.1rem;
+    border-radius: 0.2rem;
+    background: var(--pf-wine-soft);
+}
+
+.pf-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem 1.5rem;
+    margin: 0;
+}
+
+.pf-field {
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--pf-line);
+    min-width: 0;
+}
+
+.pf-field--full {
+    grid-column: 1 / -1;
+}
+
+.pf-field dt {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--pf-mute);
+}
+
+.pf-field dd {
+    margin: 0.15rem 0 0;
+    font-size: 0.98rem;
+    font-weight: 500;
+    color: var(--pf-ink);
+    overflow-wrap: anywhere;
+}
+
+
+/* ---------- PRÉVIA PÚBLICA ---------- */
+
+.pf-preview {
+    text-align: center;
+    padding-bottom: 1.6rem;
+}
+
+.pf-preview-label {
+    margin: 0.9rem 1.5rem 0;
+    text-align: left;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: var(--pf-mute);
+}
+
+.pf-preview-label strong {
+    display: block;
+    font-family: 'Nunito', 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--pf-wine-dark);
+}
+
+.pf-preview .pf-avatar {
+    width: 5.1rem;
+    height: 5.1rem;
+    margin: 1.25rem auto 0;
+    font-size: 2rem;
+}
+
+.pf-preview .pf-chip--ok {
+    margin-top: 0.8rem;
+}
+
+.pf-preview-name {
+    margin: 1rem 0 0;
+    font-family: 'Nunito', 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--pf-ink);
+}
+
+.pf-preview-spec {
+    margin: 0.15rem 0 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--pf-wine-soft);
+}
+
+.pf-preview-bio {
+    margin: 1rem 1.5rem 0;
+    padding: 0.95rem 1.1rem;
+    border-radius: 1rem;
+    background: #fbeeed;
+    text-align: left;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--pf-mute);
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+    .pf-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1.35rem;
+    }
+
+    .pf-main,
+    .pf-side {
+        display: contents;
+    }
+
+    .pf-preview {
+        order: 1;
+    }
+}
+
+@media (max-width: 700px) {
+    .pf-hero {
+        padding: 0 1.15rem 1.3rem;
+    }
+
+    .pf-section {
+        padding: 1.2rem 1.15rem 1.3rem;
+    }
+
+    .pf-fields {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   ADIÇÃO - DOCUMENTOS COM FOTO
+   ========================================================= */
+
+.pf-docs {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.pf-doc {
+    margin: 0;
+}
+
+.pf-doc figcaption {
+    margin-bottom: 8px;
+    color: var(--mute, #7E7075);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.pf-doc img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--line, #EFE7E8);
+    border-radius: 14px;
+}
+
+
+/* =========================================================
+   SEM BARRAS DE ROLAGEM
+   ========================================================= */
+
+.pf-page,
+.pf-page * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.pf-page::-webkit-scrollbar,
+.pf-page *::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+/* =========================================================
+   RELATÓRIO
+   ========================================================= */
+
+.pf-main .rel-page {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+
+    --rel-wine: #9B1B2A;
+    --rel-rose: #F8E9EC;
+    --rel-ink: #2B1F22;
+    --rel-mute: #7E7075;
+    --rel-line: #EFE7E8;
+}
+
+/* ---------- Topo ---------- */
+
+.rel-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.rel-topo h1 {
+    margin: 0;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1.15;
+
+    color: var(--rel-ink);
+}
+
+.rel-acoes {
+    display: flex;
+    align-items: center;
+    gap: .625rem;
+}
+
+.rel-btn {
+    height: 3rem;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+
+    padding: 0 1rem;
+
+    border: 1.5px solid var(--rel-line);
+    border-radius: .75rem;
+
+    background: #fff;
+    color: var(--rel-ink);
+
+    font-family: 'Poppins', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.rel-btn:hover {
+    border-color: #e4c3c9;
+}
+
+.rel-btn svg {
+    width: 1.05rem;
+    height: 1.05rem;
+}
+
+.rel-select {
+    height: 3rem;
+    min-width: 13rem;
+
+    padding: 0 1rem;
+
+    border: 1.5px solid var(--rel-line);
+    border-radius: .75rem;
+
+    background: #fff;
+    color: var(--rel-ink);
+
+    font-family: 'Poppins', sans-serif;
+    font-size: .85rem;
+    font-weight: 500;
+
+    outline: none;
+    cursor: pointer;
+}
+
+/* ---------- Cards ---------- */
+
+.rel-kpis {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 1rem;
+
+    margin-bottom: 1rem;
+}
+
+.rel-card {
+    min-width: 0;
+
+    padding: 1rem;
+
+    border-radius: 1rem;
+
+    background: #fff;
+
+    border: 1px solid #f2e9eb;
+
+    box-shadow:
+        0 2px 5px rgba(60, 20, 30, .025),
+        0 7px 18px rgba(60, 20, 30, .035);
+}
+
+.rel-kpi {
+    min-height: 6.1rem;
+
+    display: flex;
+    align-items: center;
+
+    gap: .8rem;
+}
+
+.rel-icone {
+    flex: none;
+
+    width: 3rem;
+    height: 3rem;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: .8rem;
+
+    background: var(--rel-rose);
+    color: var(--rel-wine);
+}
+
+.rel-icone svg {
+    width: 1.35rem;
+    height: 1.35rem;
+
+    stroke-width: 1.8;
+}
+
+.rel-kpi-texto {
+    display: block;
+    min-width: 0;
+}
+
+.rel-kpi-texto b {
+    display: block;
+
+    color: var(--rel-ink);
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 800;
+
+    letter-spacing: -.5px;
+    line-height: 1.05;
+}
+
+.rel-kpi-texto > span {
+    display: block;
+
+    margin-top: .15rem;
+
+    color: var(--rel-mute);
+
+    font-family: 'Poppins', sans-serif;
+    font-size: .75rem;
+
+    line-height: 1.25;
+}
+
+.rel-kpi-texto-menor {
+    font-size: 1.25rem !important;
+}
+
+/* =========================================================
+   GRÁFICO DE LINHA + TABELA
+   ========================================================= */
+
+.rel-conteudo {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, .8fr);
+
+    gap: 1rem;
+}
+
+.rel-grafico-card,
+.rel-tabela-card {
+    min-width: 0;
+
+    background: #fff;
+
+    border: 1px solid #f2e9eb;
+    border-radius: 1rem;
+
+    box-shadow:
+        0 2px 5px rgba(60, 20, 30, .025),
+        0 7px 18px rgba(60, 20, 30, .035);
+
+    overflow: hidden;
+}
+
+/* ---------- Título ---------- */
+
+.rel-grafico-header {
+    padding: 1rem 1rem 0;
+}
+
+.rel-grafico-header h3 {
+    margin: 0;
+
+    color: var(--rel-ink);
+
+    font-family: 'Nunito', sans-serif;
+    font-size: .95rem;
+    font-weight: 800;
+}
+
+.rel-grafico-header p {
+    margin: .25rem 0 0;
+
+    color: var(--rel-mute);
+
+    font-family: 'Poppins', sans-serif;
+    font-size: .7rem;
+}
+
+/* ---------- Linha ---------- */
+
+.rel-chart {
+    width: 100%;
+    height: 14rem;
+
+    margin-top: .25rem;
+}
+
+/* ---------- Tabela ---------- */
+
+.rel-tabela-wrap {
+    padding: .65rem 1rem 1rem;
+}
+
+.rel-tabela {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    table-layout: fixed;
+}
+
+.rel-tabela th {
+    padding: .4rem .25rem;
+
+    border-bottom: 1px solid var(--rel-line);
+
+    color: var(--rel-mute);
+
+    font-family: 'Poppins', sans-serif;
+    font-size: .65rem;
+    font-weight: 600;
+
+    text-align: left;
+}
+
+.rel-tabela td {
+    padding: .45rem .25rem;
+
+    border-bottom: 1px solid #f4edef;
+
+    color: var(--rel-ink);
+
+    font-family: 'Poppins', sans-serif;
+    font-size: .68rem;
+}
+
+.rel-tabela th:not(:first-child),
+.rel-tabela td:not(:first-child) {
+    text-align: center;
+}
+
+.rel-tabela tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ---------- Toast ---------- */
+
+.rel-toast {
+    position: fixed;
+
+    right: 1.5rem;
+    bottom: 1.5rem;
+
+    z-index: 1100;
+
+    display: flex;
+    align-items: center;
+    gap: .625rem;
+
+    padding: .75rem 1.125rem;
+
+    border-radius: .75rem;
+
+    background: #2B1F22;
+    color: #fff;
+
+    font-weight: 700;
+
+    opacity: 0;
+    transform: translateY(5.5rem);
+
+    pointer-events: none;
+
+    transition: .3s;
+}
+
+.rel-toast.is-show {
+    opacity: 1;
+    transform: none;
+}
+
+/* ---------- Responsividade APENAS do relatório ---------- */
+
+@media (max-width: 700px) {
+
+    .rel-topo {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .rel-topo h1 {
+        white-space: normal;
+    }
+
+    .rel-acoes {
+        width: 100%;
+    }
+
+    .rel-btn,
+    .rel-select {
+        flex: 1;
+    }
+
+    .rel-kpis {
+        grid-template-columns: 1fr;
+    }
+
+    .rel-conteudo {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================
+   AÇÕES DA CONTA
+   ========================================= */
+
+.pf-acoes-conta {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+
+    width: 100%;
+    margin-top: 16px;
+    padding: 25px 40px;
+
+    background: #fff;
+    border: 1px solid #f3e3e6;
+    border-radius: 1.4rem;
+    box-shadow: 0 0.3rem 1.4rem rgba(120, 30, 50, 0.05);
+    overflow: hidden;
+}
+
+.pf-acoes-conta form {
+    width: 100%;
+    margin: 0;
+}
+
+.pf-acoes-conta .btn-suspender,
+.pf-acoes-conta .btn-excluir {
+    box-sizing: border-box;
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    border-radius: 12px;
+    background: #fff;
+
+    font-family: 'Nunito', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition: background .2s ease, border-color .2s ease;
+}
+
+.pf-acoes-conta .btn-suspender svg,
+.pf-acoes-conta .btn-excluir svg {
+    width: 19px;
+    height: 19px;
+    flex: none;
+}
+
+.pf-acoes-conta .btn-suspender {
+    border: 1px solid #eadcdf;
+    color: #2b1f22;
+}
+
+.pf-acoes-conta .btn-suspender:hover {
+    background: #fdf6f7;
+}
+
+.pf-acoes-conta .btn-excluir {
+    border: 1px solid #eda3ae;
+    color: #c51f36;
+}
+
+.pf-acoes-conta .btn-excluir:hover {
+    background: #fff5f6;
+}
+
+/* Suspender */
+
+.pf-acoes-conta .btn-suspender {
+    border: 1px solid #eadcdf;
+    color: #2b1f22;
+}
+
+.pf-acoes-conta .btn-suspender:hover {
+    background: #fdf6f7;
+}
+
+
+/* Excluir */
+
+.pf-acoes-conta .btn-excluir {
+    border: 1px solid #eda3ae;
+    color: #c51f36;
+}
+
+.pf-acoes-conta .btn-excluir:hover {
+    background: #fff5f6;
+}
+
+.pf-doc .pf-mute,
+.pf-doc a:not(:has(img)) {
+    display: block;
+    padding: 1rem;
+    border: 1px dashed var(--pf-line, #efe3e6);
+    border-radius: 14px;
+    text-align: center;
+    font-size: .85rem;
+    color: var(--pf-mute, #857379);
+}
+
+/* ---------- Caixa fechada (vale em todos os navegadores) ---------- */
+.rel-select {
+    -webkit-appearance: none;
+    appearance: none;                       /* tira a setinha e o visual padrão do sistema */
+    min-width: 12rem;
+    padding: .5625rem 2.5rem .5625rem .875rem;
+    border: 1.5px solid var(--line);
+    border-radius: .625rem;
+    background-color: #fff;
+    color: var(--ink);
+    font-weight: 700;                       /* mesmo peso do botão "Baixar PDF" */
+    line-height: 1.4;
+    cursor: pointer;
+    transition: border-color .15s, box-shadow .15s;
+ 
+    /* setinha vinho desenhada por nós */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239B1B2A' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right .875rem center;
+    background-size: 1rem;
+}
+ 
+.rel-select:hover {
+    border-color: var(--rose2);             /* igual ao hover do botão */
+}
+ 
+/* ao clicar/usar o teclado: um destaque só (antes eram dois anéis) */
+.rel-page .rel-select:focus,
+.rel-page .rel-select:focus-visible {
+    outline: 0;
+    /* border-color: var(--wine); */
+    box-shadow: 0 0 0 3px var(--rose);
+}
+ 
+/* itens da lista (nos navegadores que deixam estilizar) */
+.rel-select option {
+    padding: .5rem .75rem;
+    background: #fff;
+    color: var(--ink);
+    font-weight: 600;
+}
+ 
+.rel-select option:checked {
+    background-color: var(--rose);
+    color: var(--wine);
+}
+ 
+ 
+/* ---------- Lista aberta personalizada ----------
+   Só funciona nos navegadores novos (Chrome/Edge). Nos outros,
+   a lista aberta continua no estilo do sistema, e a caixa fechada
+   (acima) já fica igual em todos. */
+@supports (appearance: base-select) {
+    .rel-select,
+    .rel-select::picker(select) {
+        appearance: base-select;
+    }
+ 
+    .rel-select {
+        background-image: none;             /* a seta passa a ser a do ::picker-icon */
+        padding-right: .875rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: .75rem;
+    }
+ 
+    .rel-select::picker-icon {
+        content: "";
+        width: 1rem;
+        height: 1rem;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239B1B2A' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+        transition: rotate .15s;
+    }
+ 
+    .rel-select:open::picker-icon {
+        rotate: 180deg;                     /* seta vira para cima quando aberto */
+    }
+ 
+    /* a "janela" da lista */
+    .rel-select::picker(select) {
+        margin-top: .25rem;
+        padding: .3rem;
+        border: 1.5px solid var(--line);
+        border-radius: .75rem;
+        background: #fff;
+        box-shadow: 0 .5rem 1.5rem rgba(60, 20, 30, .12);
+    }
+ 
+    .rel-select option {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        border-radius: .5rem;
+        cursor: pointer;
+    }
+ 
+    .rel-select option + option {
+        margin-top: .15rem;                 /* pequeno respiro entre os itens */
+    }
+ 
+    .rel-select option:hover,
+    .rel-select option:focus-visible {
+        background-color: var(--rose);
+        color: var(--wine);
+        outline: 0;
+    }
+ 
+    .rel-select option::checkmark {         /* o "✓" do item escolhido */
+        color: var(--wine);
+        order: 1;
+        margin-left: auto;
+    }
+}

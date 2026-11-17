@@ -1,0 +1,443 @@
+/* =========================================================
+   RELATÓRIO DE USUÁRIAS
+   CSS próprio: independente do listas.css.
+   Tudo dentro de .rel-page, prefixo "rel-".
+   Tamanhos em rem: acompanham o zoom do navegador.
+   ========================================================= */
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Oculta as barras visuais de todos os elementos, EXCETO html e body,
+   para a barra natural do Chrome continuar aparecendo na página */
+*:not(html):not(body) {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+*:not(html):not(body)::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+}
+
+.rel-page {
+    --wine: #9B1B2A;
+    --wine-d: #7D1422;
+    --rose: #F8E9EC;
+    --rose2: #F0CDD4;
+    --ink: #2B1F22;
+    --mute: #7E7075;
+    --line: #EFE7E8;
+    --sombra: 0 1px 2px rgba(60, 20, 30, .04), 0 4px 16px rgba(60, 20, 30, .04);
+
+    width: 100%;
+    max-width: 92rem;
+    margin-inline: auto;
+    padding: clamp(.875rem, 2vw, 1.75rem);
+    padding-bottom: 2.5rem;
+
+    font-family: 'Nunito', system-ui, sans-serif;
+    font-size: .875rem;
+    line-height: 1.4;
+    color: var(--ink);
+
+    /* Oculta as barras de rolagem da área */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.rel-page::-webkit-scrollbar,
+.rel-page *::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.rel-page *,
+.rel-page *::before,
+.rel-page *::after {
+    box-sizing: border-box;
+}
+
+.rel-page :where(h1, h3, p) {
+    margin: 0;
+}
+
+.rel-page :where(button) {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+.rel-page :focus-visible {
+    outline: 2px solid var(--wine);
+    outline-offset: 2px;
+}
+
+.rel-page svg.lucide {
+    width: 1.125rem;
+    height: 1.125rem;
+    stroke-width: 1.75;
+    flex: none;
+}
+
+/* Monitores grandes: mais espaço e texto um pouco maior */
+@media (min-width: 100rem) {
+    .rel-page {
+        font-size: .9375rem;
+        max-width: 100rem;
+    }
+}
+
+@media (min-width: 140rem) {
+    .rel-page {
+        font-size: 1rem;
+        max-width: 112rem;
+    }
+}
+
+/* ---------- Topo ---------- */
+.rel-topo {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-bottom: 1rem;
+}
+
+.rel-topo h1 {
+    font-size: clamp(1.375rem, 1.1rem + 1vw, 1.75rem);
+    font-weight: 800;
+    letter-spacing: -.4px;
+}
+
+.rel-acoes {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .625rem;
+}
+
+/* ---------- Botão e seletor ---------- */
+.rel-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    padding: .5625rem 1rem;
+    border: 1.5px solid var(--line);
+    border-radius: .625rem;
+    background: #fff;
+    color: var(--ink);
+    font-weight: 700;
+    white-space: nowrap;
+    transition: .15s;
+}
+
+.rel-btn:hover {
+    border-color: var(--rose2);
+}
+
+.rel-select {
+    min-width: 12rem;
+    padding: .5625rem 2rem .5625rem .875rem;
+    border: 1.5px solid var(--line);
+    border-radius: .625rem;
+    background: #fff;
+    color: var(--ink);
+    font: inherit;
+    font-weight: 600;
+    outline: 0;
+    cursor: pointer;
+}
+
+.rel-select:focus {
+    border-color: var(--wine);
+    box-shadow: 0 0 0 3px var(--rose);
+}
+
+/* ---------- Card ---------- */
+.rel-card {
+    min-width: 0;
+    padding: 1.125rem;
+    border-radius: 1rem;
+    background: #fff;
+    box-shadow: var(--sombra);
+}
+
+/* ---------- Cards de resumo ---------- */
+.rel-kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 1rem;
+}
+
+.rel-kpi {
+    display: flex;
+    align-items: center;
+    gap: .875rem;
+}
+
+.rel-icone {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: .75rem;
+    background: var(--rose);
+    color: var(--wine);
+}
+
+.rel-kpi-texto {
+    display: block;
+    min-width: 0;
+}
+
+.rel-kpi-texto b {
+    display: block;
+    font-size: 1.857em;
+    font-weight: 800;
+    letter-spacing: -.5px;
+    line-height: 1.1;
+}
+
+.rel-kpi-texto span {
+    color: var(--mute);
+}
+
+/* texto no lugar de número (ex.: "14 a 25 anos") */
+.rel-kpi-texto .rel-kpi-texto-menor {
+    padding: .1875rem 0;
+    font-size: 1.4286em;
+}
+
+/* ---------- Gráficos ---------- */
+.rel-graficos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.rel-graficos h3 {
+    font-size: 1.0714em;
+    font-weight: 800;
+}
+
+.rel-graficos p {
+    color: var(--mute);
+    font-size: .857em;
+}
+
+.rel-grafico {
+    width: 100%;
+    height: 18.75rem;
+    margin-top: .5rem;
+}
+
+/* Gráfico de linha ocupa 2 colunas quando a tela é larga */
+@media (min-width: 1500px) {
+    .rel-card.rel-card--largo {
+        grid-column: span 2;
+    }
+}
+
+@media (min-width: 100rem) {
+    .rel-grafico {
+        height: 22rem;
+    }
+}
+
+@media (min-width: 140rem) {
+    .rel-grafico {
+        height: 26rem;
+    }
+}
+
+/* ---------- Aviso (toast) ---------- */
+.rel-toast {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    gap: .625rem;
+    max-width: calc(100vw - 3rem);
+    padding: .75rem 1.125rem;
+    border-radius: .75rem;
+    background: var(--ink, #2B1F22);
+    color: #fff;
+    font-weight: 700;
+    opacity: 0;
+    transform: translateY(5.5rem);
+    pointer-events: none;
+    transition: .3s;
+}
+
+.rel-toast.is-show {
+    opacity: 1;
+    transform: none;
+}
+
+/* ---------- Celular ---------- */
+@media (max-width: 37.5rem) {
+    .rel-acoes,
+    .rel-select {
+        width: 100%;
+    }
+
+    .rel-acoes .rel-btn {
+        flex: 1 1 100%;
+    }
+
+    .rel-grafico {
+        height: 16rem;
+    }
+
+    .rel-toast {
+        right: 1rem;
+        left: 1rem;
+        bottom: 1rem;
+    }
+}
+
+/* ---------- Menos animação ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .rel-page *,
+    .rel-page *::before,
+    .rel-page *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* ---------- Caixa fechada (vale em todos os navegadores) ---------- */
+.rel-select {
+    -webkit-appearance: none;
+    appearance: none;                       /* tira a setinha e o visual padrão do sistema */
+    min-width: 12rem;
+    padding: .5625rem 2.5rem .5625rem .875rem;
+    border: 1.5px solid var(--line);
+    border-radius: .625rem;
+    background-color: #fff;
+    color: var(--ink);
+    font-weight: 700;                       /* mesmo peso do botão "Baixar PDF" */
+    line-height: 1.4;
+    cursor: pointer;
+    transition: border-color .15s, box-shadow .15s;
+ 
+    /* setinha vinho desenhada por nós */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239B1B2A' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right .875rem center;
+    background-size: 1rem;
+}
+ 
+.rel-select:hover {
+    border-color: var(--rose2);             /* igual ao hover do botão */
+}
+ 
+/* ao clicar/usar o teclado: um destaque só (antes eram dois anéis) */
+.rel-page .rel-select:focus,
+.rel-page .rel-select:focus-visible {
+    outline: 0;
+    border-color: var(--wine);
+    box-shadow: 0 0 0 3px var(--rose);
+}
+ 
+/* itens da lista (nos navegadores que deixam estilizar) */
+.rel-select option {
+    padding: .5rem .75rem;
+    background: #fff;
+    color: var(--ink);
+    font-weight: 600;
+}
+ 
+.rel-select option:checked {
+    background-color: var(--rose);
+    color: var(--wine);
+}
+ 
+ 
+/* ---------- Lista aberta personalizada ----------
+   Só funciona nos navegadores novos (Chrome/Edge). Nos outros,
+   a lista aberta continua no estilo do sistema, e a caixa fechada
+   (acima) já fica igual em todos. */
+@supports (appearance: base-select) {
+    .rel-select,
+    .rel-select::picker(select) {
+        appearance: base-select;
+    }
+ 
+    .rel-select {
+        background-image: none;             /* a seta passa a ser a do ::picker-icon */
+        padding-right: .875rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: .75rem;
+    }
+ 
+    .rel-select::picker-icon {
+        content: "";
+        width: 1rem;
+        height: 1rem;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239B1B2A' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+        transition: rotate .15s;
+    }
+ 
+    .rel-select:open::picker-icon {
+        rotate: 180deg;                     /* seta vira para cima quando aberto */
+    }
+ 
+    /* a "janela" da lista */
+    .rel-select::picker(select) {
+        margin-top: .25rem;
+        padding: .3rem;
+        border: 1.5px solid var(--line);
+        border-radius: .75rem;
+        background: #fff;
+        box-shadow: 0 .5rem 1.5rem rgba(60, 20, 30, .12);
+    }
+ 
+    .rel-select option {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        border-radius: .5rem;
+        cursor: pointer;
+    }
+ 
+    .rel-select option + option {
+        margin-top: .15rem;                 /* pequeno respiro entre os itens */
+    }
+ 
+    .rel-select option:hover,
+    .rel-select option:focus-visible {
+        background-color: var(--rose);
+        color: var(--wine);
+        outline: 0;
+    }
+ 
+    .rel-select option::checkmark {         /* o "✓" do item escolhido */
+        color: var(--wine);
+        order: 1;
+        margin-left: auto;
+    }
+}

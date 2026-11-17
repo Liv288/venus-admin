@@ -1,0 +1,244 @@
+/* =========================================================
+   DASHBOARD (Visão geral)
+   Complementa o perfil-config.css (.wrap, .card, .head, .ico, .sm).
+   Tudo com prefixo "dash-". Tamanhos em rem, como no resto do painel.
+   ========================================================= */
+
+/* ---------- Escolha do período ---------- */
+.dash-periodo {
+    display: flex;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    border-radius: 0.75rem;
+    background: #fff;
+    box-shadow: var(--sh);
+}
+
+.dash-periodo a {
+    padding: 0.4375rem 0.875rem;
+    border-radius: 0.5rem;
+    color: var(--mute);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.15s;
+}
+
+.dash-periodo a:hover {
+    background: var(--rose);
+    color: var(--wine);
+}
+
+.dash-periodo a.on {
+    background: var(--wine);
+    color: #fff;
+}
+
+/* ---------- Aviso ---------- */
+.dash-aviso {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.875rem;
+    background: var(--rose);
+    color: var(--wine-d);
+    font-size: 0.8125rem;
+}
+
+.dash-aviso i[data-lucide] {
+    width: 1.125rem;
+    height: 1.125rem;
+    flex: none;
+}
+
+.dash-aviso b {
+    font-weight: 800;
+}
+
+/* ---------- Cards de resumo ---------- */
+.dash-kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13.5rem, 1fr));
+    gap: 1rem;
+}
+
+/* Em telas largas os 5 cards ficam lado a lado */
+@media (min-width: 1100px) {
+    .dash-kpis {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}
+
+.dash-kpi {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+}
+
+.dash-kpi b {
+    display: block;
+    font-size: 1.625rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+}
+
+.dash-kpi span {
+    color: var(--ink);
+    font-size: 0.8125rem;
+    font-weight: 600;
+}
+
+.dash-kpi .ico {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.dash-kpi small {
+    display: block;
+    margin-top: 0.125rem;
+    color: var(--mute);
+    font-size: 0.6875rem;
+}
+
+.dash-kpi small.dash-novos {
+    color: var(--ok);
+    font-weight: 700;
+}
+
+/* ---------- Gráfico + fila ---------- */
+.dash-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: 1rem;
+    align-items: stretch;
+}
+
+/* O card do gráfico acompanha a altura da fila ao lado */
+.dash-card-grafico {
+    display: flex;
+    flex-direction: column;
+}
+
+.dash-grafico {
+    flex: 1;
+    width: 100%;
+    min-height: 18rem;
+    margin-top: 0.5rem;
+}
+
+/* ---------- Linhas de lista (fila e profissionais) ---------- */
+.dash-linha {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6875rem 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.dash-linha:last-child {
+    border-bottom: 0;
+}
+
+.dash-linha:first-of-type {
+    margin-top: 0.5rem;
+}
+
+.dash-linha-texto {
+    flex: 1;
+    min-width: 0;
+}
+
+.dash-linha-texto b {
+    display: block;
+    overflow: hidden;
+    font-size: 0.8125rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dash-ico-pq {
+    width: 2.125rem;
+    height: 2.125rem;
+    border-radius: 0.625rem;
+}
+
+.dash-ico-pq i[data-lucide] {
+    width: 1rem;
+    height: 1rem;
+}
+
+.dash-chip {
+    flex: none;
+    padding: 0.125rem 0.5625rem;
+    border-radius: 99px;
+    background: var(--rose);
+    color: var(--wine);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.dash-avatar {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.125rem;
+    height: 2.125rem;
+    border-radius: 50%;
+    background: var(--rose2);
+    color: var(--wine);
+    font-size: 0.8125rem;
+    font-weight: 800;
+}
+
+/* ---------- Selos de status ---------- */
+.dash-status {
+    flex: none;
+    padding: 0.1875rem 0.625rem;
+    border-radius: 99px;
+    font-size: 0.6875rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.dash-status--ok {
+    background: #E8F6EE;
+    color: #1F6B47;
+}
+
+.dash-status--pend {
+    background: #FFF3DD;
+    color: #8A5A00;
+}
+
+.dash-status--neg {
+    background: var(--rose);
+    color: var(--wine);
+}
+
+.dash-vazio {
+    padding: 1.25rem 0 0.5rem;
+    color: var(--mute);
+    text-align: center;
+}
+
+/* ---------- Telas menores ---------- */
+@media (max-width: 1000px) {
+    .dash-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .dash-periodo {
+        width: 100%;
+    }
+
+    .dash-periodo a {
+        flex: 1;
+        text-align: center;
+    }
+}
